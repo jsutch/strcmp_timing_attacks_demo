@@ -54,10 +54,10 @@ Server:
 1.    receives the credentials from the client containing the string.
 2.    gets the local copy of the secret
 3.    strcmp's the raw string of the client credential to the local secret
-        a. compare each byte from l to r
-        b. when a byte fails, return False
-        c. if the byte matches move to next char
-        d. Return True if nothing fails or return False when a match fails. 
+      - compare each byte from l to r
+      - when a byte fails, return False
+      - if the byte matches move to next char
+      - Return True if nothing fails or return False when a match fails. 
 4.    Server -> True/False -> Client
 
 The problem is that for every correct chunk of text on the LHS the "fail" takes longer to return. Also - longer strings also take longer to return.
