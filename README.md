@@ -1,16 +1,15 @@
-# Timing Side Channel Attack Analysis 
+# Side Channel Timing Attack Analysis in Authentication Methods
 
-TL;DR - use secure hashcmp methods that time buffer their return output rather than rolling-your-own, or doing direct password/token/comparison.
+**TL;DR** "use secure hashing methods that time buffer their return output rather than rolling-your-own method, let alone doing direct password/token string comparison"
 
-What drove this was Microsoft's discovery of vulnerabilities in NETGEAR DGN-2200v1 series routers, including a discover that the routers use strcmp to validate passwords. If you aren't familiar with the problem - this is a weird implementation. It presumes that the stored credentials are in plaintext on the system, which is never a good idea. This is compounded by using the strcmp method to determine if the password is correct. 
-
-The gold standard for auth comparison is to: 
-- use a hashing method to manage the creds
-- only store the hashed value, never store the original string
-- hash the incoming password then compare the hashes to see if the credential is correct.
-
+What drove this notebook was Microsoft's discovery of vulnerabilities in NetGear's DGN-2200v1 series routers, including a discover that the routers use strcmp to validate passwords. If you aren't familiar with the problem - this is a weird implementation. It presumes that the stored credentials are in plaintext on the system, which is never a good idea. This is compounded by using the String Comparison (strcmp) method to determine if the password is correct which induces this flaw. 
 
 A client was trying to understand why strcmp could leak information about passwords, so I created this notebook. I'm calling this "a hash comparison appreciation exercise".
+
+The gold standard for auth comparison is to: 
+- use a hashing method to manage the creds creation and validation.
+- only store the hashed value, never store the original string
+- hash the incoming password then compare the hashes to see if the credential is correct.
 
 
 The issue, described by Microsoft's 365 Defender Research Team on June 30, 2021:  
