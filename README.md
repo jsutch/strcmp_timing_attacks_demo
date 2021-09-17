@@ -3,14 +3,15 @@
 **TL;DR** "use secure hashing methods that time buffer their return output rather than rolling-your-own method, let alone doing direct password/token string comparison"
 
 ### Why did I do this?
-What drove this notebook was Microsoft's discovery of vulnerabilities in NetGear's DGN-2200v1 series routers, including a discover that the routers use strcmp to validate passwords. If you aren't familiar with the problem - this is a weird implementation. It presumes that the stored credentials are in plaintext on the system, which is never a good idea. This is compounded by using the String Comparison (strcmp) method to determine if the password is correct which induces this flaw. 
+What drove this notebook was Microsoft's discovery of vulnerabilities in NetGear's DGN-2200v1 series routers, including finding that the routers store plaintext credentials and  use the C strcmp method to validate passwords.  A client was trying to understand why strcmp could leak information about passwords, so I created this notebook. I'm calling this "a hash comparison appreciation exercise".
 
-A client was trying to understand why strcmp could leak information about passwords, so I created this notebook. I'm calling this "a hash comparison appreciation exercise".
+
+If you aren't familiar with the problem - this is a weird implementation. Stored credentials in plaintext on the system is never a good idea. This is compounded by using the String Comparison (strcmp) method to determine if the password is correct which induces this flaw. 
 
 The gold standard for auth comparison is to: 
 - use a hashing method to manage the creds creation and validation.
-- only store the hashed value, never store the original string
-- hash the incoming password then compare the hashes to see if the credential is correct.
+- On account creation only store the hashed value, never store the original string
+- On user validation hash the incoming password then compare the hashes to determine if the credential is correct.
 
 
 The issue, described by Microsoft's 365 Defender Research Team on June 30, 2021:  
