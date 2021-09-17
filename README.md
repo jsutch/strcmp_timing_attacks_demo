@@ -1,14 +1,41 @@
-# Timing Attack Analysis 
+# Timing Side Channel Attack Analysis 
 
 TL;DR - use secure hashcmp methods that time buffer their return output rather than rolling-your-own, or doing direct password/token/comparison.
 
+What drove this was Microsoft's discovery of vulnerabilities in NETGEAR DGN-2200v1 series routers, including a discover that the routers use strcmp to validate passwords. If you aren't familiar with the problem - this is a weird implementation. It presumes that the stored credentials are in plaintext on the system, which is never a good idea. This is compounded by using the strcmp method to determine if the password is correct. 
 
-## Demonstrating Timing Attack analysis against authentication methods that use strcmp
+The gold standard for auth comparison is to: 
+- use a hashing method to manage the creds
+- only store the hashed value, never store the original string
+- hash the incoming password then compare the hashes to see if the credential is correct.
 
-This is a quick demonstration of how authentication shouldn't use strcmp (or other non-time-compensated methods) 
+
+A client was trying to understand why strcmp could leak information about passwords, so I created this notebook. I'm calling this "a hash comparison appreciation exercise".
 
 
-The idea is to show that time analysis can reveal meaningful information about a string used in a secret or a password if the amount of time it takes to perform the string match isn't buffered.
+The issue, described by Microsoft's 365 Defender Research Team on June 30, 2021:  
+https://www.microsoft.com/security/blog/2021/06/30/microsoft-finds-new-netgear-firmware-vulnerabilities-that-could-lead-to-identity-theft-and-full-system-compromise/
+
+
+```
+Deriving saved router credentials via a cryptographic side-channel
+
+At this stage, we already had complete control over the router, but we continued investigating how the authentication itself was implemented.
+
+If a page had to be authenticated, HTTPd would require HTTP basic authentication. The username and password would be encoded as a base64 string (delimited by a colon), sent in the HTTP header, and finally verified against the saved username and password in the router’s memory. The router stores this information (along with the majority of its configuration) in NVRAM, that is, outside the filesystem that we had extracted.
+
+However, when we examined the authentication itself, we discovered a side-channel attack that can let an attacker get the right credentials:
+
+Note that the username and the password are compared using strcmp. The libc implementation of strcmp works by comparing character-by-character until a NUL terminator is observed or until a mismatch happens.
+```
+
+
+## Demonstrating the side-channel Timing Attack analysis against authentication methods that use strcmp
+
+Why authentication shouldn't use strcmp (or other non-time-compensated methods). 
+
+
+The basic idea is to show that time analysis can reveal meaningful information about a string used in a secret or a password if the amount of time it takes to perform the string match isn't buffered.
 
 This example will be to show how the libc strcmp method reveals information about a secret string and, possibly, the string itself in a brute force attack. We'll be using python code to demonstrate the action and analysis, but this can be performed with any language that uses similar methods.
 
