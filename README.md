@@ -10,7 +10,7 @@ If you aren't familiar with the problem - this is a weird implementation. Stored
 
 The gold standard for auth comparison is to: 
 - use a hashing method to manage the creds creation and validation.
-- On account creation only store the hashed value, never store the original string
+- On account creation only store the hashed value (preferably with a salt), never store the original string
 - On user validation hash the incoming password then compare the hashes to determine if the credential is correct.
 
 
