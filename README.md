@@ -35,11 +35,12 @@ Note that the username and the password are compared using strcmp. The libc impl
 
 Why authentication shouldn't use libc strcmp (or other non-time-compensated methods). 
 
+The basic idea is to show that, when you make lots of tries to a system, analyzing the amount of time each transaction takes to return can reveal meaningful information about a secret string used in a password or token.
 
-The basic idea is to show that time analysis can reveal meaningful information about a string used in a secret or a password if the amount of time it takes to perform the string match isn't buffered.
+We'll be using python code to demonstrate the action and analysis, but this can be performed with any language that uses similar methods.
 
-This example will be to show how the libc strcmp method reveals information about a secret string and, possibly, the string itself in a brute force attack. We'll be using python code to demonstrate the action and analysis, but this can be performed with any language that uses similar methods.
 
+### The Breakdown
 Our secret string is 'apple'.
 
 A client presents the secret string to the server, who knows the secret string, in an operation that will fail if the secret is incorrect.
@@ -64,7 +65,16 @@ So "b" or "broken" returns a failure instantly, but "a", "aplomb", "app", "appli
 
 **using sound hash functions which return in a constant time and not rolling-your-own solves this problem.**
 
-Also: for authentication purposes it's an antipattern to store the secret plaintext or decode an encrypted secret to compare in plaintext. Hashing the secret, storing the hash then comparing the hashes also obscures the size of your secret by making the compared strings the same lengh, and increasing the problem for a brute force attack.
+### Why?
+
+A few reasons:
+- if you store a hash, then both strings are always the same size. 
+- the mature methods also add time-based buffers into place so that long/short/alphabetically diverse strings all return in constant time. No predictable time variation = no attack.
+
+ This is where I get in over my head. Smarter People Than I assure me that the way to do this capital-S Securely has a number of small, difficult problems. I don't think it's a waste of time for a developer to want to expand their technique on the company dime, but naive solutions in this arena are a big deal. To limit potential impact to your project or your employer/shareholders, you probably want to partner with someone who writes secure services as you approach mastery.
+
+
+
 
 
 
