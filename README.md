@@ -2,6 +2,7 @@
 
 **TL;DR** "use secure hashing methods that time buffer their return output rather than rolling-your-own method, let alone doing direct password/token string comparison"
 
+### Why did I do this?
 What drove this notebook was Microsoft's discovery of vulnerabilities in NetGear's DGN-2200v1 series routers, including a discover that the routers use strcmp to validate passwords. If you aren't familiar with the problem - this is a weird implementation. It presumes that the stored credentials are in plaintext on the system, which is never a good idea. This is compounded by using the String Comparison (strcmp) method to determine if the password is correct which induces this flaw. 
 
 A client was trying to understand why strcmp could leak information about passwords, so I created this notebook. I'm calling this "a hash comparison appreciation exercise".
