@@ -62,7 +62,7 @@ Server:
 
 The problem is that for every correct chunk of text on the LHS the "fail" takes longer to return. Also - longer strings also take longer to return.
 
-So "b" or "broken" returns a failure instantly, but "a", "aplomb", "app", "application", etc will each take slightly longer for each character matched. The times are tiny, but it's possible to model the jitter window such that these lengths don't get lost in the noise. This can drastically cut down the time of a brute force attack and enhance its chances of success.
+So in comparing against "apple",  "b" or "broken" or "zebra" returns a failure instantly, but "a", "aplomb", "app", "application", etc will each take slightly longer for each character matched. The times are tiny, but it's possible to model the jitter window such that these lengths don't get lost in the noise. This can drastically cut down the time of a brute force attack and enhances the chances of success.
 
 **using sound hash functions or tools (like bcrypt) which return in a constant time and not rolling-your-own solves this problem.**
 
