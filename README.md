@@ -33,7 +33,7 @@ Note that the username and the password are compared using strcmp. The libc impl
 
 ## Demonstrating the side-channel Timing Attack analysis against authentication methods that use strcmp
 
-Why authentication shouldn't use strcmp (or other non-time-compensated methods). 
+Why authentication shouldn't use libc strcmp (or other non-time-compensated methods). 
 
 
 The basic idea is to show that time analysis can reveal meaningful information about a string used in a secret or a password if the amount of time it takes to perform the string match isn't buffered.
