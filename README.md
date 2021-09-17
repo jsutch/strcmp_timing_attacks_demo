@@ -51,13 +51,13 @@ Client -> 'apple' -> Server
 
 Server:
 
-    receives a buffer containing the string.
-    gets a copy of the secret
-    strcmp's the two strings
-        analyze bytes from l to r
-        when a byte fails, return False
-        if no bytes fail move to next char.
-        Return True if nothing fails or False when a match fails. Server ->True/False -> Client
+1.    receives a buffer containing the string.
+2.    gets a copy of the secret
+3.    strcmp's the two strings
+        a. analyze bytes from l to r
+        b. when a byte fails, return False
+        c. if no bytes fail move to next char.
+        d. Return True if nothing fails or False when a match fails. Server ->True/False -> Client
 
 The problem is that for every correct chunk of text on the LHS the "fail" takes longer to return. Also - longer strings also take longer to return.
 
@@ -70,6 +70,7 @@ So "b" or "broken" returns a failure instantly, but "a", "aplomb", "app", "appli
 A few reasons:
 - if you store a hash, then both strings are always the same size. 
 - the mature methods also add time-based buffers into place so that long/short/alphabetically diverse strings all return in constant time. No predictable time variation = no attack.
+- modern mathods/tools for passwords also include strengtheners like salts. Not available for token comparison.
 
 This is where I get in over my head. Smarter People Than I assure me that the way to do this capital-S Securely has a number of small, difficult problems. 
 
