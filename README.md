@@ -64,7 +64,9 @@ The problem is that for every correct chunk of text on the LHS the "fail" takes 
 
 So in comparing against "apple",  "b" or "broken" or "zebra" returns a failure instantly, but "a", "aplomb", "app", "application", etc will each take slightly longer for each character matched. The times are tiny, but it's possible to model the jitter window such that these lengths don't get lost in the noise. This can drastically cut down the time of a brute force attack and enhances the chances of success.
 
-**using sound hash functions or tools (like bcrypt) which return in a constant time and not rolling-your-own solves this problem.**
+**using sound hash functions (HMAC, crypt, et al)  or tools (like bcrypt) which return in a constant time and not rolling-your-own solves this problem.**
+
+https://www.chosenplaintext.ca/articles/beginners-guide-constant-time-cryptography.html
 
 ### Why?
 
