@@ -73,7 +73,7 @@ https://www.chosenplaintext.ca/articles/beginners-guide-constant-time-cryptograp
 A few reasons:
 - if you store a hash, then both strings are always the same size. 
 - the mature methods also add time-based buffers into place so that long/short/alphabetically diverse strings all return in constant time. No predictable time variation = no attack.
-- modern mathods/tools for passwords also include strengtheners like salts. Not available for token comparison.
+- modern methods/tools for passwords also include strengtheners like salts. Not available for token comparison.
 
 This is where I get in over my head. Smarter People Than I assure me that the way to do this capital-S Securely has a number of small, difficult problems. 
 
