@@ -7,10 +7,10 @@ What drove this notebook was Microsoft's discovery of vulnerabilities in NetGear
 
 
 If you aren't familiar with the problem: 
-- strcmp tests each letter of the stored password compared to each letter of the inputted password and then fails the as soon as they are not the same.
+- strcmp tests each letter of the stored password from left to right compared to each letter of the inputted password and then fails the as soon as they are not the same. 
 - if you have a password like "apple" and I need to guess it, it's hard to do if I just throw the dictionary at the input - my guess must match "apple" or it fails and I haven't learned anything more than "both applied and banana are the wrong answer".
-- But if I calculate how much time it takes for the input to reject each wrong attempt, then I now have some insight into which combinations take longer. Longer time to fail means "more right", and can influence subsequent attacks to get closer and closer to the right answer, and rule out wrong answers. That stored Timing value is the Side-Channel, which is why it's referred to as a "Side Channel Attack".
-- This also means that I can use smaller attack space with an iterative approach, and I can rule out the bad answers faster.
+- but if I calculate how much time it takes for the input to reject each wrong attempt, then I now have some insight into which combinations take longer. Longer time to fail means "more right", and can influence subsequent attacks to get closer and closer to the right answer, and rule out wrong answers. That stored Timing value is the Side-Channel, which is why it's referred to as a "Side Channel Attack".
+- this also means that I can use smaller attack space with an iterative approach, and I can rule out the bad answers faster.
 
 
 The NetGear issue is an especially weird implementation. Stored credentials in plaintext on the system is never a good idea, but is compounded by using the String Comparison (strcmp) method to determine if the password is correct - the strcmp induces this flaw, but it's also a flaw to store the passwords in plaintext. 
