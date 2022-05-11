@@ -6,12 +6,19 @@
 What drove this notebook was Microsoft's discovery of vulnerabilities in NetGear's DGN-2200v1 series routers, including finding that the routers store plaintext credentials and  use the C strcmp method to validate passwords.  A client was trying to understand why strcmp could leak information about passwords, so I created this notebook. I'm calling this "a hash comparison appreciation exercise".
 
 
-If you aren't familiar with the problem - this is a weird implementation. Stored credentials in plaintext on the system is never a good idea. This is compounded by using the String Comparison (strcmp) method to determine if the password is correct which induces this flaw. 
+If you aren't familiar with the problem: 
+- strcmp tests each letter of the stored password compared to each letter of the inputted password and then fails the as soon as they are not the same.
+- if you have a password like "apple" and I need to guess it, it's hard to do if I just throw the dictionary at the input - my guess must match "apple" or it fails and I haven't learned anything more than "both applied and banana are the wrong answer".
+- But if I calculate how much time it takes for the input to reject each wrong attempt, then I now have some insight into which combinations take longer. Longer time to fail means "more right", and can influence subsequent attacks to get closer and closer to the right answer, and rule out wrong answers. That stored Timing value is the Side-Channel, which is why it's referred to as a "Side Channel Attack".
+- This also means that I can use smaller attack space with an iterative approach, and I can rule out the bad answers faster.
+
+
+The NetGear issue is an especially weird implementation. Stored credentials in plaintext on the system is never a good idea, but is compounded by using the String Comparison (strcmp) method to determine if the password is correct - the strcmp induces this flaw, but it's also a flaw to store the passwords in plaintext. 
 
 The gold standard for auth comparison is to: 
 - use a hashing method to manage the creds creation and validation.
-- On account creation only store the hashed value (preferably with a salt), never store the original string
-- On user validation hash the incoming password then compare the hashes to determine if the credential is correct.
+- On account creation only store the hashed value (preferably with a salt), never store the plaintext string.
+- On user validation hash the incoming password then compare the hashes, not decrypted plaintext strings, to determine if the credential is correct.
 
 
 The issue, described by Microsoft's 365 Defender Research Team on June 30, 2021:  
