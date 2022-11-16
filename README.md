@@ -58,9 +58,9 @@ Client -> 'apple' -> Server
 
 Server:
 
-1.    receives the credentials from the client containing the string.
-2.    gets the local copy of the secret
-3.    strcmp's the raw string of the client credential to the local secret
+1.    receives the unencrypted credentials from the client containing the string.
+2.    gets the local, unencrypted copy of the secret
+3.    strcmp's (compares) each byte of the unencrypted raw string of the client credential to the local, unencrypted secret
       - compare each byte from l to r
       - when a byte fails, return False
       - if the byte matches move to next char
