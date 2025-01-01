@@ -86,7 +86,7 @@ This is where I get in over my head.
 
 I don't think it's a waste of time for a developer to want to expand their technique on the company dime, but naive solutions that go to production in this arena are a big deal. To limit potential impact to your project or your employer/shareholders, you probably want to partner with someone who writes secure services as you approach mastery. Otherwise you risk turning your project or employer into a CERT advisory.
 
-Let Tom Scott tell you more [Tom Scott on Computerphile - How NOT to Store Passwords!] (https://www.youtube.com/watch?v=8ZtInClXe1Q)
+Let Tom Scott tell you more [Tom Scott on Computerphile - How NOT to Store Passwords!](https://www.youtube.com/watch?v=8ZtInClXe1Q)
 
 
 
