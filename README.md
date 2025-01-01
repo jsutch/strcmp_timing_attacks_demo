@@ -73,14 +73,7 @@ So in comparing against "apple",  "b" or "broken" or "zebra" returns a failure i
 
 **using sound hash functions which return in a constant time and not rolling-your-own reduces this risk.**
 
-### Further reading:
-[OWASP Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
-
-[Tim McLean's fine "Beginners Guide To Constant Time Cryptography"](https://www.chosenplaintext.ca/articles/beginners-guide-constant-time-cryptography.html)
-
-[PassCamp's "What is Password Hashing: A Comprehensive Guide"](https://passcamp.com/blog/what-is-password-hashing/)
-
-### Why?
+#### Why?
 
 A few reasons:
 - if you store a hash, then both strings are always the same size. 
@@ -88,13 +81,19 @@ A few reasons:
 - modern methods/tools for passwords also include strengtheners like salts. Not available for token comparison.
 
 
+### Epilogue
 I don't think it's a waste of time for a developer to want to expand their technique on the company dime, but naive solutions that go to production in this arena are a big deal. To limit potential impact to your project or your employer/shareholders, you probably want to partner with someone who writes secure services as you approach mastery as a programmer. Or just use the well understood off the shelf solutions.
 
  Otherwise you risk turning your project or employer into a CERT advisory.
 
 Let Tom Scott tell you more [Tom Scott on Computerphile - How NOT to Store Passwords!](https://www.youtube.com/watch?v=8ZtInClXe1Q)
 
+### Further reading:
+[OWASP Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
 
+[Tim McLean's fine "Beginners Guide To Constant Time Cryptography"](https://www.chosenplaintext.ca/articles/beginners-guide-constant-time-cryptography.html)
+
+[PassCamp's "What is Password Hashing: A Comprehensive Guide"](https://passcamp.com/blog/what-is-password-hashing/)
 
 
 
