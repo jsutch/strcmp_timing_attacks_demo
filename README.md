@@ -85,9 +85,10 @@ A few reasons:
 - the mature methods also add time-based buffers into place so that long/short/alphabetically diverse strings all return in constant time. No predictable time variation = no attack.
 - modern methods/tools for passwords also include strengtheners like salts. Not available for token comparison.
 
-This is where I get in over my head. 
 
-I don't think it's a waste of time for a developer to want to expand their technique on the company dime, but naive solutions that go to production in this arena are a big deal. To limit potential impact to your project or your employer/shareholders, you probably want to partner with someone who writes secure services as you approach mastery. Otherwise you risk turning your project or employer into a CERT advisory.
+I don't think it's a waste of time for a developer to want to expand their technique on the company dime, but naive solutions that go to production in this arena are a big deal. To limit potential impact to your project or your employer/shareholders, you probably want to partner with someone who writes secure services as you approach mastery as a programmer. Or just use the well understood off the shelf solutions.
+
+ Otherwise you risk turning your project or employer into a CERT advisory.
 
 Let Tom Scott tell you more [Tom Scott on Computerphile - How NOT to Store Passwords!](https://www.youtube.com/watch?v=8ZtInClXe1Q)
 
