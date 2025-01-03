@@ -69,9 +69,7 @@ Server:
 
 The problem is that for every correct chunk of text on the LHS the "fail" takes longer to return. Also - longer strings also take longer to return.
 
-So in comparing against "apple",  "b" or "broken" or "zebra" returns a failure instantly, but "a", "aplomb", "app", "application", etc will each take slightly longer for each character matched. The times are tiny, but it's possible to model the jitter window such that these lengths don't get lost in the noise. This can drastically cut down the time of a brute force attack and enhances the chances of success.
-
-**using sound hash functions which return in a constant time and not rolling-your-own reduces this risk.**
+So in comparing against "apple",  "b" or "broken" or "zebra" returns a failure instantly, but "a", "aplomb", "app", "application", etc will each take slightly longer for each character matched. The times are tiny, but it's possible to model the jitter window such that these lengths don't get lost in the noise. This can drastically cut down the time of a brute force attack and enhances the chances of success.  **using sound hash functions which return in a constant time and not rolling-your-own reduces this risk.**
 
 #### Why?
 
@@ -82,9 +80,7 @@ A few reasons:
 
 
 ### Epilogue
-I don't think it's a waste of time for a developer to want to expand their technique on the company dime, but naive solutions that go to production in this arena are a big deal. To limit potential impact to your project or your employer/shareholders, you probably want to partner with someone who writes secure services as you approach mastery as a programmer. Or just use the well understood off the shelf solutions.
-
- Otherwise you risk turning your project or employer into a CERT advisory.
+I don't think it's a waste of time for a developer to want to expand their technique on the company dime, but naive solutions that go to production in this arena are a big deal. To limit potential impact to your project or your employer/shareholders, you probably want to partner with someone who writes secure services as you approach mastery as a programmer. Or just use the well understood off the shelf solutions. Otherwise you risk turning your project or employer into a CERT advisory.
 
 Let Tom Scott tell you more [Tom Scott on Computerphile - How NOT to Store Passwords!](https://www.youtube.com/watch?v=8ZtInClXe1Q)
 
