@@ -90,6 +90,7 @@ Let Tom Scott tell you more [Tom Scott on Computerphile - How NOT to Store Passw
 [Tim McLean's fine "Beginners Guide To Constant Time Cryptography"](https://www.chosenplaintext.ca/articles/beginners-guide-constant-time-cryptography.html)
 
 [PassCamp's "What is Password Hashing: A Comprehensive Guide"](https://passcamp.com/blog/what-is-password-hashing/)
-[Lean That Stack's video 'You're Storing Passwords Wrong. Here's The Fix' is worth about 9mins of your time, also](https://www.youtube.com/watch?v=mQHiil7R2Wc)
+
+[Learn That Stack's video 'You're Storing Passwords Wrong. Here's The Fix' is worth about 9mins of your time, also](https://www.youtube.com/watch?v=mQHiil7R2Wc)
 
 
