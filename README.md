@@ -17,8 +17,8 @@ The NetGear issue is an especially weird implementation. Stored credentials in p
 
 The gold standard for auth comparison is to: 
 - use a hashing method to manage the creds creation and validation.
-- On account creation only store the hashed value with a salt, never store the plaintext string
-- or an encrypted value that can be decrypted with a key, since this has the same problem as a plaintext string if compromised. (hashing and encryption are different things)
+- On account creation only store the hashed value with a salt, never store the plaintext string.
+- neither store an encrypted value that can be decrypted with a key, since this has the same problem as a plaintext string if compromised. (hashing and encryption are different things)
 - On user validation hash the incoming password then compare the hashes to determine if the credential is correct.
 
 
